@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maps</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+</head>
+<body>
+    <div id="gmap"></div>
+    <script src="js/firebase.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/geolocation.js"></script>
+    <script src="js/map.js"></script>
+    <section class="hero is-danger">
+        <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Ambulance Home
+              </h1>
+              <h2 class="subtitle">
+                Find Patients!
+              </h2>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript">
+        var lastname = localStorage.getItem("ambulance");
+        var watchID = navigator.geolocation.watchPosition(function(position) {
+            update_location(position.coords.latitude, position.coords.longitude);
+        });
+    </script>
+</body>
+</html>
