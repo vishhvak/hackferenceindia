@@ -1,0 +1,28 @@
+{
+  "name": "hackferenceindia",
+  "version": "0.0.1",
+  "description": "Project built during the hackathon Hackference 2018",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "hrs -p 8000 public;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishhvak/hackferenceindia.git"
+  },
+  "keywords": [
+    "hackathon",
+    "ambulance",
+    "webapp"
+  ],
+  "author": "vishhvak, digi0ps, beyondtheinferno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vishhvak/hackferenceindia/issues"
+  },
+  "homepage": "https://github.com/vishhvak/hackferenceindia#readme",
+  "dependencies": {
+    "simple-hot-reload-server": "^1.1.12"
+  }
+}
