@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Maps</title>
+    <style>
+     #gmap {
+        height: 600px;
+        width: 600px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
 </head>
 <body>
     <div id="gmap"></div>
@@ -12,5 +24,7 @@
     <script src="js/config.js"></script>
     <script src="js/geolocation.js"></script>
     <script src="js/map.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD72OP0M_dcxY_wlVfMP9vKun5A8odUEj4&callback=initMap"
+      async defer></script>
 </body>
 </html>
