@@ -1,5 +1,5 @@
 // Initialize Firebase
-const MAP_KEY = "AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE"
+const MAP_KEY = "AIzaSyD72OP0M_dcxY_wlVfMP9vKun5A8odUEj4"
 
 const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE",
