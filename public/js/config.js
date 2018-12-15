@@ -1,4 +1,6 @@
 // Initialize Firebase
+const MAP_KEY = "AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE"
+
 const FIREBASE_CONFIG = {
     apiKey: "AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE",
     authDomain: "ambulance-d528c.firebaseapp.com",
@@ -9,3 +11,5 @@ const FIREBASE_CONFIG = {
 };
 
 firebase.initializeApp(FIREBASE_CONFIG);
+
+
