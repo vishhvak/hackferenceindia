@@ -23,25 +23,35 @@ function showPosition(position) {
     var latitude = position.coords.latitude
     var longitude = position.coords.longitude
     var latlng = {lat: latitude, lng: longitude};
+    console.log(latlng);
     
-    var geocoder = new google.maps.Geocoder;
-    geocoder.geocode({'location': latlng}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-              map.setZoom(15);
-              var marker = new google.maps.Marker({
-                position: latlng,
-                map: map
-              });
-              //ZOOM INTO THE LOCATION OF USER
-              map.panTo(latlng);
-              infowindow.setContent(results[0].formatted_address);
-              infowindow.open(map, marker);
-            } else {
-              window.alert('No results found');
-            }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
+    var ambulance_marker = {
+          url: 'https://cdn3.iconfinder.com/data/icons/medical-healthcare-vol-3/48/health_hospital_medical_healthcare_medicalcare_doctor_clinic_physician_physic_flag_location_map_pointer_marker_pin_place_point-512.png',
+          scaledSize: new google.maps.Size(50, 50),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0)
+    };
+    
+    var user_marker = {
+          url: 'https://img.icons8.com/color/1600/person-male.png',
+          scaledSize: new google.maps.Size(50, 50),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 0)
+    };
+    
+    var marker = new google.maps.Marker({
+          position: latlng,
+          icon: user_marker,
+          map: map
+    });
+    
+    var marker2 = new google.maps.Marker({
+          position: {lat: 12.9910938, lng: 77.73167439999999},
+          icon: ambulance_marker,
+          map: map
+    });
+    
+    map.setZoom(15);
+    map.panTo(latlng)
+    
 }
