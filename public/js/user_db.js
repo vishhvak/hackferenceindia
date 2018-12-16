@@ -1,7 +1,7 @@
 
 const database = firebase.database()
 
-const nearby_ambulances = [];
+const nearby_ambulances = {};
 
 // Threshold is 2500 metres for the ambulance
 const THRESHOLD = 3000;
@@ -18,6 +18,11 @@ const ambulanceMarkerOperations = (user_pos, ambulance_marker) => {
             
             if (distBetw > THRESHOLD) {
                 // Skip plotting ambulance if it's not in the radius
+                if (nearby_ambulances[amb_id]){
+                    // Remove existing ambulance if it exists
+                    nearby_ambulances[amb_id].setMap(null);
+                    nearby_ambulances[amb_id] = null;
+                }
                 return;
             }
 
@@ -26,11 +31,16 @@ const ambulanceMarkerOperations = (user_pos, ambulance_marker) => {
                 lng: amb_details.GPS.longitude,
             }
             // Plot the ambulance as a marker
-            var marker = new google.maps.Marker({
-                position: latlng,
-                icon: ambulance_marker,
-                map: map
-          });
+            if (nearby_ambulances[amb_id]){
+                nearby_ambulances[amb_id].setPosition(latlng)
+            }
+            else {
+                nearby_ambulances[amb_id] = new google.maps.Marker({
+                    position: latlng,
+                    icon: ambulance_marker,
+                    map: map
+              });
+            }
         })
     })
 }
