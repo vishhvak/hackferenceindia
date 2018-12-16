@@ -22,29 +22,70 @@
   </head>
   <body>
     <section class="hero is-danger">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Ambulance Home</h1>
-          <h2 class="subtitle">Find Patients!</h2>
+    <div id="main-hero" class="hero-body is-relative no-padding-bottom">
+        <div class="container has-text-centered">
+            <div class="columns">
+                <div class="column is-8 is-offset-2 has-text-centered">
+                    <h1 class="title big-title text-bold is-2"> Ambulance Home </h1>
+                    <h2 class="subtitle">Find Patients!</h2>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-    <p>Your location:</p>
-    <div id="map"></div>
-    <p>Your status</p>
-    <div id="status">loading</div>
-    <div id="patientDetails">
-      <p id="name"></p>
-      <p id="phone"></p>
-      <p id="situation"></p>
     </div>
+    </section>
+     
+    <section class="section">
+    <div class="box">
+        <h3 class="subtitle">Your location:</h3>
+        <div id="map"></div>
+    </div>
+    </section>
+
+    <section class="section">
+    <div class="box">
+        <h3 class="subtitle">Your status</h3>
+        <em><div id="status">loading</div></em>
+        <br>
+
+    <div id="patientDetails">
+    <div class="field is-horizontal"> 
+        <div class="field-label is-normal">     <label class="label">Name</label> 
+        </div> 
+        <div class="field-body"> 
+            <div class="field">
+                <p id="name"></p> 
+            </div> 
+        </div> 
+    </div>    
+        
+    <div class="field is-horizontal"> 
+        <div class="field-label is-normal">     <label class="label">Phone</label> 
+        </div> 
+        <div class="field-body"> 
+            <div class="field"> 
+                <p id="phone"></p> 
+            </div> 
+        </div> 
+    </div>      
+
+    <div class="field is-horizontal"> 
+        <div class="field-label is-normal">     <label class="label">Situation</label> 
+        </div> 
+        <div class="field-body"> 
+            <div class="field"> 
+                <p id="situation"></p> 
+            </div> 
+        </div> 
+    </div>
+    </div>
+        
+    </div>
+    </section>
+
     <script src="js/firebase.js"></script>
     <script src="js/config.js"></script>
     <script type="text/javascript" src="js/ambulance.js"></script>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE&callback=myMap"
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE&callback=myMap"
     ></script>
   </body>
 </html>
