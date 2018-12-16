@@ -48,7 +48,7 @@ function showPosition(position) {
     // Plot all ambulance markers now
     ambulanceMarkerOperations(position.coords, ambulance_marker);
     
-    map.setZoom(13);
+    map.setZoom(10);
     map.panTo(latlng)
     
 }

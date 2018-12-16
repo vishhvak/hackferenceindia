@@ -4,7 +4,7 @@ const database = firebase.database()
 const nearby_ambulances = {};
 
 // Threshold is 2500 metres for the ambulance
-const THRESHOLD = 3000;
+const THRESHOLD = 100000;
 
 const ambulanceMarkerOperations = (user_pos, ambulance_marker) => {
     database.ref("/").on("value", (snapshot) => {
