@@ -1,6 +1,8 @@
 console.log("hxi")
 
-let map, directionsDisplay, directionsService;
+let map, directionsDisplay, directionsService, user, ambulance;
+const assigned_amb = localStorage.getItem("assigned_amb")
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("gmap"), {
     center: { lat: -34.397, lng: 150.644 },
@@ -20,6 +22,7 @@ function initMap() {
           lat: latitude,
           lng: longitude,
         };
+        user = pos;
 
         // Plot user marker
         // plotUser(pos)
@@ -47,7 +50,6 @@ function initMap() {
 // } */
 
 const getAmbulanceData = (user_pos) => {
-    const assigned_amb = localStorage.getItem("assigned_amb")
     const database = firebase.database()
     database.ref(assigned_amb + "/GPS").once("value").then(function(snapshot) {
         const val = snapshot.val()
@@ -55,6 +57,7 @@ const getAmbulanceData = (user_pos) => {
             lat: val.latitude,
             lng: val.longitude,
         }
+        ambulance = amb_pos
         // plotAmbulance(amb_pos)
         plotRoute(amb_pos, user_pos)
     })
@@ -75,6 +78,35 @@ const plotRoute = (ambulance, user) => {
         }
     })
 }
+
+// Update live location
+
+// Updating ambulance live
+firebase.database().ref(assigned_amb + "/GPS").on("value", (snapshot) => {
+    const val = snapshot.val()
+        const amb_pos = {
+            lat: val.latitude,
+            lng: val.longitude,
+        }
+    ambulance = amb_pos
+    if (map) {
+        console.log("value", amb_pos)
+        plotRoute(ambulance, user) 
+    }
+})
+
+navigator.geolocation.watchPosition(({ coords }) => {
+    const { latitude, longitude } = coords;
+        const pos = {
+          lat: latitude,
+          lng: longitude,
+        };
+    user = pos
+    console.log(pos)
+    if (map) {
+        plotRoute(ambulance, user)
+    }
+})
 
 // const plotAmbulance = (pos) => {
 //     const ambMarker = new google.maps.Marker({

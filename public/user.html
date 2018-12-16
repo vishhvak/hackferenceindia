@@ -6,12 +6,7 @@
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="user.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE&callback=myMap"></script>
   </head>
-    
-    
-    
   <body onload="getLocation()">
     <div id="main-hero" class="hero-body is-relative no-padding-bottom">
         <div class="container has-text-centered">
@@ -28,5 +23,11 @@
             </div>
         </div>
     </div>
+    <script src="js/user.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/config.js"></script>
+    <script src="../node_modules/haversine-distance/index.js"></script>
+    <script src="js/user_db.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo-fsQoqEwUGSdNK3huCH_cU8172JSiXE&callback=myMap"></script>
   </body>
 </html>
