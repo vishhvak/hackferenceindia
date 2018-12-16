@@ -45,13 +45,10 @@ function showPosition(position) {
           map: map
     });
     
-    var marker2 = new google.maps.Marker({
-          position: {lat: 12.9910938, lng: 77.73167439999999},
-          icon: ambulance_marker,
-          map: map
-    });
+    // Plot all ambulance markers now
+    ambulanceMarkerOperations(position.coords, ambulance_marker);
     
-    map.setZoom(15);
+    map.setZoom(13);
     map.panTo(latlng)
     
 }
