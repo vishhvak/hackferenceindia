@@ -4,7 +4,6 @@ $patientStuff.style.display = "none";
 const id = localStorage.getItem("ambulance_id");
 
 const push_location = latlng => {
-  console.log("sup");
   const gpsref = firebase.database().ref(id + "/GPS");
   gpsref.update({
     latitude: latlng.lat,
@@ -12,7 +11,17 @@ const push_location = latlng => {
   });
 };
 
-let map, marker, ambulance_icon, user_icon;
+let map,
+  marker,
+  ambulance_icon,
+  user_icon,
+  ambulance_pos,
+  user_pos,
+  directionsDisplay,
+  directionsService;
+
+let routeToUser;
+
 const update_marker = latlng => {
   if (marker) {
     marker.setPosition(latlng);
@@ -24,6 +33,7 @@ const update_marker = latlng => {
     });
   }
   map.panTo(latlng);
+  map.setCenter(latlng);
 };
 
 // Status update
@@ -42,13 +52,30 @@ firebase
       fillUpPatientDetails(currentPatient);
     } else {
       $patientStuff.style.display = "none";
+      directionsDisplay.setMap(null);
+      marker.setMap(map);
+      update_marker(ambulance_pos);
+    }
+
+    if (amb.status === "onduty" && amb.currentPatient.gps && ambulance_pos) {
+      const currentPatient = amb.currentPatient;
+      if (routeToUser) {
+        const { lat, lng } = currentPatient.gps;
+        user_pos = {
+          lat,
+          lng
+        };
+        directionsDisplay.setMap(map);
+        routeToUser(user_pos, ambulance_pos);
+        marker.setMap(null);
+      }
     }
   });
 
 const fillUpPatientDetails = ({ name, phone, situation }) => {
-  document.querySelector("#name").textContent = "Name: " + name;
-  document.querySelector("#phone").textContent = "phone: " + phone;
-  document.querySelector("#situation").textContent = "situation: " + situation;
+  document.querySelector("#name").textContent = name;
+  document.querySelector("#phone").textContent = phone;
+  document.querySelector("#situation").textContent = situation;
 
   // unhide the detils div
   $patientStuff.style.display = "block";
@@ -70,21 +97,42 @@ function myMap() {
     anchor: new google.maps.Point(0, 0)
   };
 
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsService = new google.maps.DirectionsService();
+
   var mapProp = {
     center: new google.maps.LatLng(28.7041, 77.1025),
     zoom: 5
   };
   //Loads map element in id="map"
   map = new google.maps.Map(document.getElementById("map"), mapProp);
+  directionsDisplay.setMap(map);
 
   const watchID = navigator.geolocation.watchPosition(function({ coords }) {
     const latlng = {
       lat: coords.latitude,
       lng: coords.longitude
     };
+    ambulance_pos = latlng;
     push_location(latlng);
     update_marker(latlng);
+    if (user_pos) routeToUser(user_pos, ambulance_pos);
   });
 
   map.setZoom(13);
+
+  routeToUser = (user, ambulance) => {
+    const request = {
+      origin: ambulance,
+      destination: user,
+      travelMode: "DRIVING"
+    };
+
+    directionsService.route(request, (result, status) => {
+      console.log(status, result);
+      if (status == "OK") {
+        directionsDisplay.setDirections(result);
+      }
+    });
+  };
 }
