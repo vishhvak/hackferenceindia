@@ -33,13 +33,13 @@
           <div class="box field has-text-centered" style="float:left; margin-left:160px">
             <div class="tabs is-centered is-boxed">
               <ul>
-                <li class="is-active">
+                <li class="is-active" id="log">
                     <a onclick="loginpage()">
                         <span class="icon is-small"><i class="fas fa-sign-in-alt" aria-hidden="true"></i></span>
                         <span>Login</span>
                     </a>
                 </li>
-                <li>
+                <li id="reg">
                     <a onclick="register()">
                         <span class="icon is-small"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
                         <span>Signup</span>
@@ -95,10 +95,15 @@
       function loginpage() {
         login.style.display = "block"
         reg.style.display = "none"
+        document.getElementById("log").classList.add('is-active');
+        document.getElementById("reg").classList.remove('is-active');
       }
       function register() {
         reg.style.display = "block"
         login.style.display = "none"
+        document.getElementById("login").classList.add('is-active');
+        document.getElementById("reg").classList.add('is-active');
+        document.getElementById("log").classList.remove('is-active');
       }
       </script>
  </body>
