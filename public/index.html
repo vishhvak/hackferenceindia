@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html class="bg-img">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hackference</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    
     <style>
-      .bg-img { 
+        
+        .bg-img { 
         background-image: url(healthcare.jpg) ;
         background-position: center center;
         background-repeat:  no-repeat;
@@ -19,92 +25,121 @@
         width:400px;
     }
     </style>
-  </head>
-  <body>
-      <section class="hero">
+</head>
+
+<body>
+   
+    <section class="hero">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title" style="color:white"> Home </h1>
-            <h2 class="subtitle" style="color:white"> Your All-in-One Healthcare Solution! </h2>
+                <h2 class="subtitle" style="color:white"> Your All-in-One Healthcare Solution! </h2>
             </div>
         </div>
-      </section>
-      <section>
-          <div class="box field has-text-centered" style="float:left; margin-left:160px">
+    </section>
+    
+    <section>
+       
+        <div class="box field has-text-centered" style="float:left; margin-left:160px">
             <div class="tabs is-centered is-boxed">
-              <ul>
-                <li class="is-active" id="log">
-                    <a onclick="loginpage()">
-                        <span class="icon is-small"><i class="fas fa-sign-in-alt" aria-hidden="true"></i></span>
-                        <span>Login</span>
-                    </a>
-                </li>
-                <li id="reg">
-                    <a onclick="register()">
-                        <span class="icon is-small"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
-                        <span>Signup</span>
-                    </a>
-                </li>
-              </ul>
+                <ul>
+                    <li class="is-active" id="log">
+                        <a onclick="loginpage()">
+                            <span class="icon is-small"><i class="fas fa-sign-in-alt" aria-hidden="true"></i></span>
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    <li id="reg">
+                        <a onclick="register()">
+                            <span class="icon is-small"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
+                            <span>Signup</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
+            
             <div class="container" id="login">
-            <div class="control has-icons-left has-icons-right">
-              <input class="input is-medium is-danger" type="text" id="phone" placeholder="Phone Number">
-              <span class="icon is-left">
-                <i class="fas fa-user"></i>
-              </span> <br> <br>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-danger" type="text" id="phone" placeholder="Phone Number">
+                    <span class="icon is-left">
+                        <i class="fas fa-user"></i>
+                    </span> <br> <br>
+                </div>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-danger" type="password" id="otp" placeholder="OTP">
+                    <span class="icon is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div> <br>
             </div>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input is-medium is-danger" type="password" id="otp" placeholder="OTP">
-              <span class="icon is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </div> <br>
-             </div>
-             <div class="container" id="register">
-            <div class="control has-icons-left has-icons-right">
-              <input class="input is-medium is-danger" type="text" id="name" placeholder="Name">
-              <span class="icon is-left">
-                <i class="fas fa-user"></i>
-              </span> <br> <br>
-            </div>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input is-medium is-danger" type="password" id="phone" placeholder="Phone Number">
-              <span class="icon is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </div> <br>
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="answer">
-                User
+            
+            <div class="container" id="register">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="usertype" onclick="license()" value="1">
+                    <span class="mdl-radio__label">User</span>
                 </label>
-                <label class="radio">
-                  <input type="radio" name="answer">
-                Driver
-                </label>
-            </div>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="margin-left:10px">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="usertype" onclick="license()" value="2">
+                    <span class="mdl-radio__label">Driver</span>
+                </label> <br> <br>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-danger" type="text" id="name" placeholder="Name">
+                    <span class="icon is-left">
+                        <i class="fas fa-user"></i>
+                    </span> <br> <br>
+                </div>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-danger" type="password" id="phone" placeholder="Phone Number">
+                    <span class="icon is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div> <br>
+                <div class="control has-icons-left has-icons-right" id="vehicle" style="display:none">
+                    <input class="input is-medium is-danger" type="text" id="vehicleno" placeholder="Vehicle Number">
+                    <span class="icon is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </div> <br>
             </div>
             <a class="button is-link is-outlined">Submit</a>
-             </div>        
-     </section>
-     <script type="text/javascript">
+        </div>
+    </section>
+    
+    <script type="text/javascript">
         var login = document.querySelector("#login")
         var reg = document.querySelector("#register")
         reg.style.display = "none"
-      function loginpage() {
-        login.style.display = "block"
-        reg.style.display = "none"
-        document.getElementById("log").classList.add('is-active');
-        document.getElementById("reg").classList.remove('is-active');
-      }
-      function register() {
-        reg.style.display = "block"
-        login.style.display = "none"
-        document.getElementById("login").classList.add('is-active');
-        document.getElementById("reg").classList.add('is-active');
-        document.getElementById("log").classList.remove('is-active');
-      }
-      </script>
- </body>
+
+        function loginpage() {
+            login.style.display = "block"
+            reg.style.display = "none"
+            document.getElementById("log").classList.add('is-active');
+            document.getElementById("reg").classList.remove('is-active');
+        }
+
+        function register() {
+            reg.style.display = "block"
+            login.style.display = "none"
+            document.getElementById("login").classList.add('is-active');
+            document.getElementById("reg").classList.add('is-active');
+            document.getElementById("log").classList.remove('is-active');
+        }
+        
+        function license() {
+            var y = document.querySelector("#vehicle")
+            var r = document.getElementById("option-2")
+            var checked = r.checked
+            if(checked)
+            {
+                y.style.display = "block"
+            }
+            else
+            {
+                y.style.display = "none"
+            }
+        }
+
+    </script>
+</body>
+
 </html>
