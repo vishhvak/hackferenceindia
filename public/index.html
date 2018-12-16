@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_blue-blue.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    
+    <script src="js/firebase.js"></script>
+    <script src="js/config.js"></script>
     <style>
-        
+
         .bg-img { 
         background-image: url(healthcare.jpg) ;
         background-position: center center;
@@ -28,7 +29,6 @@
 </head>
 
 <body>
-   
     <section class="hero">
         <div class="hero-body">
             <div class="container">
@@ -37,9 +37,9 @@
             </div>
         </div>
     </section>
-    
+
     <section>
-       
+
         <div class="box field has-text-centered" style="float:left; margin-left:160px">
             <div class="tabs is-centered is-boxed">
                 <ul>
@@ -57,8 +57,14 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div class="container" id="login">
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input is-medium is-info" type="text" id="name" placeholder="Name">
+                    <span class="icon is-left">
+                        <i class="fas fa-user"></i>
+                    </span> <br> <br>
+                </div>
                 <div class="control has-icons-left has-icons-right">
                     <input class="input is-medium is-info" type="text" id="phone" placeholder="Phone Number">
                     <span class="icon is-left">
@@ -71,17 +77,10 @@
                         <i class="fas fa-lock"></i>
                     </span>
                 </div> <br>
+                <a class="button is-link is-outlined">Login</a>
             </div>
-            
+
             <div class="container" id="register">
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="usertype" onclick="license()" value="1">
-                    <span class="mdl-radio__label">User</span>
-                </label>
-                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="margin-left:10px">
-                    <input type="radio" id="option-2" class="mdl-radio__button" name="usertype" onclick="license()" value="2">
-                    <span class="mdl-radio__label">Driver</span>
-                </label> <br> <br>
                 <div class="control has-icons-left has-icons-right">
                     <input class="input is-medium is-info" type="text" id="name" placeholder="Name">
                     <span class="icon is-left">
@@ -89,22 +88,22 @@
                     </span> <br> <br>
                 </div>
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input is-medium is-info" type="password" id="phone" placeholder="Phone Number">
+                    <input class="input is-medium is-info" type="text" id="phone" placeholder="Phone Number">
                     <span class="icon is-left">
                         <i class="fas fa-mobile"></i>
                     </span>
                 </div> <br>
-                <div class="control has-icons-left has-icons-right" id="vehicle" style="display:none">
+                <div class="control has-icons-left has-icons-right" id="vehicle">
                     <input class="input is-medium is-info" type="text" id="vehicleno" placeholder="Vehicle Number">
                     <span class="icon is-left">
                         <i class="fas fa-ambulance"></i>
                     </span>
                 </div> <br>
+                <a class="button is-link is-outlined" id="regdriver"> Register</a>
             </div>
-            <a class="button is-link is-outlined">Submit</a>
         </div>
     </section>
-    
+    <script src="js/index.js"> </script>
     <script type="text/javascript">
         var login = document.querySelector("#login")
         var reg = document.querySelector("#register")
@@ -124,21 +123,18 @@
             document.getElementById("reg").classList.add('is-active');
             document.getElementById("log").classList.remove('is-active');
         }
-        
-        function license() {
-            var y = document.querySelector("#vehicle")
-            var r = document.getElementById("option-2")
-            var checked = r.checked
-            if(checked)
-            {
-                y.style.display = "block"
-            }
-            else
-            {
-                y.style.display = "none"
-            }
-        }
 
+        const reg_submit = (e) => {
+            e.preventDefault()
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var vehicle = document.getElementById("vehicleno").value;
+            writeNewPost({
+                 name, phone, vehicle   
+                })
+        }
+        
+        document.querySelector("#regdriver").addEventListener("click", reg_submit);
     </script>
 </body>
 
